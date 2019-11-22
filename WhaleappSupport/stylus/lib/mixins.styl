@@ -1,0 +1,131 @@
+// myclearfix
+clearfix()
+  &:after
+    clear both
+    display block
+    visibility hidden
+
+    height 0
+
+    content "."
+    line-height 0
+
+
+// vendor
+prefix(prop, val)
+  for vendor in $vendors
+    -{vendor}-{prop} val
+  {prop} val
+
+// fontFix
+fontFix()
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -webkit-backface-visibility: hidden
+
+
+// button
+button($buttonBg, $buttonBorder, $buttonColor)
+  fontFix()
+
+  position relative
+
+  display inline-block
+
+  margin 0
+  prefix box-sizing content-box
+
+  cursor pointer
+  outline none
+  text-align center
+  text-decoration none
+  white-space nowrap
+
+  background $buttonBg
+  border $buttonBorder
+  color $buttonColor
+  outline: none
+
+  user-select none
+
+  &:link
+  &:visited
+  &:active
+    text-decoration none
+
+    background $buttonBg
+    color $buttonColor
+
+
+// disabled
+disabled()
+  position relative
+
+  z-index 1
+
+  cursor default !important
+  pointer-events none
+
+  prefix user-select none
+
+  prefix opacity 0.5
+
+  &:before
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+
+    z-index 10
+
+    cursor default !important
+    content ''
+
+
+// placeholder
+placeholder(color)
+  &::-webkit-input-placeholder
+    color color
+  &:-moz-placeholder
+    color color
+  &::-moz-placeholder
+    color color
+  &:-ms-input-placeholder
+    color color
+
+
+// ico helper
+ico(ico)
+  $localIcoWidth = image-size(ico)[0]
+  $localIcoHeight = image-size(ico)[1]
+
+  if extname(ico) != '.svg'
+    $localIcoWidth = $localIcoWidth / 2
+    $localIcoHeight = $localIcoHeight / 2
+    background-size: 100% 100% !important
+
+  width: $localIcoWidth
+  height: $localIcoHeight
+
+  background: url(ico) no-repeat
+
+
+user-select(val)
+  if val == none
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+  else
+    -webkit-touch-callout: auto
+    -webkit-user-select: auto
+    -khtml-user-select: auto
+    -moz-user-select: auto
+    -ms-user-select: auto
+    user-select: auto
+
+
+
