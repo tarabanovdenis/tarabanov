@@ -39,13 +39,27 @@ body
   font-size: 20px
   font-weight: 400
 
+  overflow: hidden
+
+  width: 100%
+  height: 100%
+
   text-align: left
   line-height: 1.5
+  -webkit-text-size-adjust: none
+  text-size-adjust: none
 
   -webkit-overflow-scrolling: touch
 
   background: $color.bg
   color: $color.text
+
+
+.preload_off
+  overflow: auto
+
+  width: auto
+  height: auto
 
 
 .page
@@ -68,17 +82,8 @@ body
   padding-top: 94px
 
 
-.js-vertical-align
-  position: absolute
-  top: 50%
-
-  opacity: 0
-
-  transition: top $animationStep ease, opacity $animationStep ease
-
-
 // icons
-iconClasses = 'arrow-left-color', 'arrow-top', 'arrow-bottom', 'close', 'close-color', 'chevron-right', 'bubble-headphones', 'bubble-list', 'bubble-text', 'attach', 'plus', 'plus-color', 'file', 'star', 'star-color', 'check'
+iconClasses = 'arrow-left-color', 'arrow-top', 'arrow-bottom', 'close', 'close-color', 'chevron-right', 'bubble-headphones', 'bubble-list', 'bubble-text', 'attach', 'plus', 'plus-color', 'file', 'star', 'star-color', 'check', 'search'
 
 for icon, i in iconClasses
   .ico-{iconClasses[i]}
@@ -106,20 +111,33 @@ for icon, i in iconClasses
   margin-right: 6px
 
 .ico-check
+  display: block
   opacity: 0
 
   height: 0
+  width: 0
+  margin-left: auto
+  margin-right: auto
 
-  transition: height $animationStep $bounce, opacity $animationStep $bounce
+  transition: height $animationStep ease, opacity $animationStep ease
 
 .quiz_done .ico-check
   opacity: 1
 
+  width: image-size('../img/check.svg')[0]
   height: image-size('../img/check.svg')[1]
 
 .rating_selected .ico-star
   background: url(../img/star-color.svg) no-repeat
 
+
+@keyframes blink
+  0%
+    opacity: 0
+  50%
+    opacity: 0
+  100%
+    opacity: 1
 
 
 // close
@@ -139,6 +157,33 @@ for icon, i in iconClasses
   border-radius: 50%
 
 
+// open-search
+.open-search
+  position: fixed
+  right: 80px
+
+  display: none
+  opacity: 1
+  z-index: 10
+  visibility: visible
+
+  width: 40px
+  height: @width
+
+  text-align: center
+  line-height: @width - 2
+
+  border-radius: 50%
+
+  transition: all $animationStep ease $animationStep
+
+.search-opened .open-search
+  opacity: 0
+  visibility: hidden
+
+  transition: all $animationStep ease 0s
+
+
 // connect
 .connect-container
   font-size: 0
@@ -148,7 +193,9 @@ for icon, i in iconClasses
 
   padding: 13px 74px 13px 0
 
-  transition: visibility  $animationStep $bounce, opacity $animationStep $bounce, transform $animationStep $bounce
+  user-select(none)
+
+  transition: visibility $animationStep $bounce, opacity $animationStep $bounce, transform $animationStep $bounce, margin $animationStep $bounce
 
   transform: translateY(0px)
 
@@ -233,6 +280,13 @@ for icon, i in iconClasses
 
 .dialogs__item .counter
   float: right
+
+  margin-left: 5px
+
+  color: $color.main
+
+.titles__item_2 .titles__title .counter
+  display: none
 
   margin-left: 5px
 
@@ -405,11 +459,22 @@ for icon, i in iconClasses
   position: relative
 
   display: block
+  overflow: hidden
 
   padding: 0 61px 0 10px
 
   background: $color.bg
   border-radius: 6px
+
+.search__link
+  font-size: 16px
+
+  float: right
+  display: none
+
+  padding: 8px 0 0 10px
+
+  color: $color.main
 
 .search__area
   font-family: $RubikR
@@ -559,10 +624,14 @@ for icon, i in iconClasses
 .dialog-box .titles-container
   height: 26px
 
+  text-align: center
+
 .quiz .titles-container
-  height: 80px
+  height: 90px
 
   text-align: center
+
+  transition: height $animationStep $bounce
 
 .dialog-box .button .titles-container
   height: $linkSize
@@ -573,7 +642,7 @@ for icon, i in iconClasses
 .quiz_done .titles
   top: -100%
 
-.page-view-tickets  .titles
+.page-view-tickets .titles
   top: -200%
 
 .header .titles
@@ -581,6 +650,26 @@ for icon, i in iconClasses
 
 .titles__item
   line-height: 1.4
+
+.header .titles .titles__item
+  opacity: 0
+  visibility: hidden
+
+.header .titles .titles__item_0,
+.page-view-categories .header .titles .titles__item_1,
+.page-view-tickets .header .titles .titles__item_2
+  opacity: 1
+  visibility: visible
+
+.page-view-categories .header .titles .titles__item_0,
+.page-view-tickets .header .titles .titles__item_0,
+.page-view-question .header .titles .titles__item_0,
+.page-view-question .header .titles .titles__item_1,
+.page-view-question .header .titles .titles__item_2,
+.page-view-chat .header .titles .titles__item_0,
+.page-view-form .header .titles .titles__item_0
+  opacity: 0
+  visibility: hidden
 
 .view-form .titles__item,
 .quiz .titles__item
@@ -790,6 +879,9 @@ for icon, i in iconClasses
 
   height: auto
 
+.page-view-chat
+  height: 100%
+
 
 // article
 .article
@@ -811,15 +903,17 @@ for icon, i in iconClasses
 
 .view-overlay .slider
   margin: 0
+  height: 100%
 
 .slider__view
-  overflow: scroll
+  overflow: hidden
 
   width: 100%
   margin-bottom: 10px
 
 .view-overlay .slider__view
   margin: 0
+  height: 100%
 
 .slider__list
   font-size: 0
@@ -833,6 +927,9 @@ for icon, i in iconClasses
 
   transition: left $animationStep ease
 
+.view-overlay .slider__list
+  height: 100%
+
 .slider__item
   display: inline-block
 
@@ -840,11 +937,30 @@ for icon, i in iconClasses
 
   vertical-align: top
 
+.view-overlay .slider__item
+  height: 100%
+
+  text-align: center
+
+.view-overlay .slider__item:before
+  display: inline-block
+
+  height: 100%
+  width: 0
+
+  content: ''
+  vertical-align: middle
+
 .slider__item img
-  width: 100%
+  width: auto
   height: auto
+  max-height: 100%
+  max-width: 100%
 
   vertical-align: top
+
+.view-overlay .slider__item img
+  vertical-align: middle
 
 .slider__footer
   font-size: 0
@@ -974,13 +1090,20 @@ for icon, i in iconClasses
   width: 21%
 
 .quiz .buttons
+  opacity: 1
   overflow: hidden
+  visibility: visible
 
   margin-left: 10px
   margin-right: 10px
+  height: 54px
+
+  transition: all $animationStep $bounce
 
 .quiz_done .buttons
+  opacity: 0
   visibility: hidden
+
   height: 0
 
 
@@ -1067,10 +1190,28 @@ for icon, i in iconClasses
   top: 10%
 
 .form__item
+  fontFix()
+
   opacity: 1
   visibility: visible
   overflow: hidden
 
+  margin-bottom: 10px
+
+  transition: all $animationStep ease $animationStep
+
+.form__item_hidden
+  opacity: 0
+  visibility: hidden
+
+  margin: 0
+  height: 0
+
+.form__item_show
+  opacity: 1
+  visibility: visible
+
+  height: 70px
   margin-bottom: 10px
 
 .form__item:last-child
@@ -1099,17 +1240,6 @@ for icon, i in iconClasses
   border-top: 0
   border-bottom-color: #fbe3e3
 
-.form__item_hidden
-  opacity: 0
-  visibility: hidden
-  overflow: hidden
-
-  margin: 0
-  min-height: 0
-  max-height: 0
-
-  transition: all $animationStep ease
-
 
 // input
 .input
@@ -1137,6 +1267,8 @@ for icon, i in iconClasses
   width: 100%
   height: 100%
 
+  background: $color.bg
+
 .input__area
   font-family: $RubikR
   font-size: 20px
@@ -1163,6 +1295,8 @@ for icon, i in iconClasses
 
 textarea.input__area,
 .input__mirror
+  overflow: hidden
+
   min-height: 80px
   padding-top: 28px
   resize: none
@@ -1187,33 +1321,43 @@ span.input__area
   display: inline-block
 
 .input__label
+  fontFix()
   font-size: 20px
 
   position: absolute
-  top: 20px
+  top: 16px
   left: 10px
 
   z-index: 2
 
+  padding-top: 4px
+
+  background: $color.bg
   color: $color.subText
 
   transition: all $animationStep ease
+
+.input_select .input__label
+  transition: none !important
 
 .input_select .input__label,
 .input_select .input__area
   pointer-events: none
 
 textarea.input__area + .input__label
-  top: 9px
-
+  top: 5px
 
 .input__area:focus + .input__label,
 .input__area_filled + .input__label
   font-size: 14px
 
-  top: 11px
+  top: 7px
 
   color: $color.subText
+
+textarea.input__area:focus + .input__label,
+textarea.input__area_filled + .input__label
+  top: 5px
 
 
 // attach
@@ -1278,24 +1422,37 @@ textarea.input__area + .input__label
 
   transition: top $animationStep $bounce $animationStep
 
-.context-box__item
-  opacity: 1
-
-  height: 100%
-
-  transition: opacity $animationStep $bounce $animationStep
-
 .page-view-tickets .context-box__list
   top: -100%
 
 .page-view-chat .context-box__list
   top: -200%
 
-.page-view-tickets .context-box__item:first-child,
-.page-view-chat .context-box__item:first-child + .context-box__item
+.context-box__item
+  opacity: 0
+  visibility: hidden
+
+  height: 100%
+
+  transition: opacity $animationStep $bounce $animationStep, transform $animationStep $bounce $animationStep, visibility $animationStep $bounce $animationStep
+
+.context-box__item_0,
+.page-view-tickets .context-box__list .context-box__item_1,
+.page-view-chat .context-box__list .context-box__item_2
+  opacity: 1
+  visibility: visible
+
+.page-view-tickets .context-box__item_0,
+.page-view-chat .context-box__item_1
   opacity: 0
 
   visibility: hidden
+
+.page-view-tickets .context-box__item_2,
+.page-view-chat .context-box__item_1
+  //transition: opacity $animationStep $bounce 0s, transform $animationStep $bounce 0s, visibility $animationStep $bounce 0s
+  transition: none !important
+
 
 
 // dialogs
@@ -1346,7 +1503,7 @@ textarea.input__area + .input__label
   overflow: hidden
 
 .chat__body
-  position: absolute
+  position: fixed
   top: 0
   right: 6px
   bottom: 56px
@@ -1416,7 +1573,7 @@ textarea.input__area + .input__label
 .chat__bubble
   font-size: 16px
 
-  padding: 10px 13px 12px
+  padding: 10px 13px
 
   line-height: 1.4
 
@@ -1678,11 +1835,27 @@ textarea.input__area + .input__label
   visibility: hidden
   overflow: hidden
 
-  margin: 0 -10px -17px !important
+  margin: 0 -10px 0 -10px !important
   min-height: 0
   max-height: 0
 
   transition: all $animationStep ease
+
+.quiz_comment .quiz__comment
+  opacity: 1
+  visibility: visible
+
+  max-height: 1000px
+  margin-bottom: -17px !important
+
+.quiz_done .quiz__comment
+  opacity: 0
+  visibility: hidden
+
+  min-height: 0
+  max-height: 0
+  margin-bottom: 0 !important
+
 
 
 // rating
@@ -1723,9 +1896,8 @@ textarea.input__area + .input__label
 
 // pseudo-link
 .pseudo-link
-  display: inline-block
+  display: block
 
-  margin-top: 0
   height: 30px
 
   user-select(none)
@@ -1740,45 +1912,356 @@ textarea.input__area + .input__label
 
   height: 0
 
+.quiz_comment .pseudo-link
+  opacity: 0
+  visibility: hidden
 
-// helpers
-.js-show
-  opacity: 1
-  overflow: visible
-  visibility: visible
-
-  min-height: 70px
-  max-height: 120px
-  margin-bottom: 10px
-
-.quiz__comment.js-show
-  max-height: 1000px
-  margin-bottom: 0
+  height: 0
 
 
 //@media only screen and (max-height: 770px)
 //@media only screen and (min-device-width: 375px) and (max-device-width: 667px)
-@media only screen and (max-device-height: 500px)
-  .page
-    padding-top: 53px !important
+//@media only screen and (max-device-height: 500px) and (orientation: landscape)
 
+
+//@media only screen
+//  and (min-device-width: 320px)
+//and (max-device-width: 812px)
+//and (orientation: landscape)
+
+//@media only screen and (min-device-width: 320px) and (max-device-width: 812px) and (orientation: landscape)
+//@media only screen and (orientation: landscape) and (max-height: 300px)
+@media only screen and (max-height: 500px)
+  .page
+      padding-top: 53px !important
+
+
+  // icons
+  .header__bar .context-box__item .button .ico-plus
+    background: url(../img/plus-color.svg) no-repeat
+
+  .ico-check
+    transition: height $animationStep ease ($animationStep * 1), opacity $animationStep ease ($animationStep * 1)
+
+
+  // close
   .close
+    position: fixed
+    top: 7px
+    right: 20px
+
     width: 40px
     height: @width
 
     line-height: @width - 2
 
+
+  // back
+  .back
+    position: absolute
+    top: 6px
+    left: 20px
+
+    z-index: 3
+
+    width: 40px
+    height: @width
+
+    line-height: @width - 2
+
+
+  // header
+  .header,
+  .page-view-chat .header
+    height: 41px
+    padding: 6px 20px
+
   .header__middle
-    display: none !important
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
 
-  .connect__inner
-    font-size: 18px
+    height: 100%
 
+    text-align: center
+
+  .header__top
+    position: relative
+
+    display: inline-block
+    z-index: 3
+
+  .header__bar
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+
+    margin: 0 !important
+
+
+  // context-box
+  .context-box
+    position: relative
+
+    //z-index: 3
+    z-index: -1
+
+    height: 46px
+    margin-left: 20px
+    margin-right: 20px
+
+    transition: margin $animationStep $bounce
+
+  .search-opened .context-box,
+  .page-view-tickets .context-box
+    z-index: 4
+
+  .page-view-search .context-box,
+  .page-view-tickets .context-box
+    margin-left: 80px
+
+  .page-view-overview .context-box__item
+    transition: opacity $animationStep $bounce 0s, transform $animationStep $bounce 0s, visibility $animationStep $bounce 0s
+
+  .context-box__item_2
+    text-align: center
+
+  .context-box__item_0
+    opacity: 0
+    visibility: hidden
+
+    background: $color.subBg
+
+    transform: translateY(-40px)
+
+    transition: opacity $animationStep $bounce 0s, transform $animationStep $bounce 0s, visibility $animationStep $bounce 0s
+
+  .search-opened .context-box__item_0
+    opacity: 1
+    visibility: visible
+
+    transform: translateY(0)
+
+  //.page-view-tickets .context-box__list .context-box__item_1
+  .page-view-categories .context-box__list .context-box__item_1,
+  .page-view-question .context-box__list .context-box__item_1
+    transition: opacity $animationStep $bounce 0s, transform $animationStep $bounce 0s, visibility $animationStep $bounce 0s
+
+
+
+  // counter
   .counter
-    height: 23px
-    min-width: 13px
+    height: 21px
+    min-width: 11px
 
     line-height: @height
 
+    border-radius: 7px
+
   .connect .counter
-    font-size: 13px
+    font-size: 12px
+
+  .titles__item_2 .titles__title .counter
+    display: inline-block
+
+
+  // connect
+  .connect-container
+    padding: 11px 0 11px 0
+
+  .back_on .connect-container,
+  .page-view-search .connect-container,
+  .page-view-categories .connect-container,
+  .page-view-question .connect-container,
+  .page-view-overlay .connect-container,
+  .page-view-form .connect-container,
+  .page-view-tickets .connect-container,
+  .page-view-chat .connect-container
+    margin-left: 60px
+
+  .connect__inner
+    font-size: 16px
+
+  .page-view-form .connect-container
+    display: none
+
+  .search-opened .connect-container
+    opacity: 0
+
+
+  // main-icon
+  .header .main-icon
+    display: none
+
+
+  // titles
+  .header__middle .titles-container
+    text-align: center
+
+  .header__middle .titles__sub,
+  .context-box__item_2 .titles__title
+    display: none
+
+  .context-box__item_2 .titles__sub
+    font-family: $RubikM
+    font-size: 20px
+
+    color: $color.text
+
+  .header__middle .titles__title
+    font-size: 18px !important
+
+    max-width: 130px
+    margin-left: auto
+    margin-right: auto
+
+    line-height: 3
+
+  .context-box__item_2 .titles__item
+    line-height: 1.7
+
+  .preload .titles__item
+    top: 30%
+
+
+  // spinner
+  .spinner
+    top: 30%
+
+
+  // search
+  .search__area
+    height: 40px
+
+  .search__ico
+    top: 9px
+    right: 10px
+
+  .search__link
+    display: block
+
+
+  // view-chat
+  .view-chat
+    top: 49px
+
+
+  // chat
+  .chat__content
+    width: 70%
+
+
+  // button
+  .header__bar .context-box__item .button,
+  .header__bar .context-box__item .button:link,
+  .header__bar .context-box__item .button:visited
+    font-size: 16px
+
+    display: inline-block
+
+    height: 40px
+    padding: 0
+
+    line-height: 40px
+
+    background: none
+    color: $color.main
+
+  .view-form .buttons__item .button,
+  .view-form .buttons__item .button:link,
+  .view-form .buttons__item .button:visited
+    display: inline-block
+
+    min-width: 136px
+
+  // buttons
+  .dialog-box .buttons_inline
+    max-width: 420px
+    margin-left: auto
+    margin-right: auto
+
+  .view-form .buttons
+    font-size: 0
+
+    position: relative
+    right: 0
+    left: 0
+    bottom: 0
+
+    white-space: nowrap
+
+  .view-form .buttons__item
+    display: inline-block
+
+    vertical-align: top
+    margin: 0
+
+  .view-form .buttons__item + .buttons__item
+    margin-left: 10px
+
+
+  // form
+  .form-container
+    top: 21%
+
+    max-width: 420px
+    margin-left: auto
+    margin-right: auto
+
+
+  // quiz
+  .quiz__inner
+    position: relative
+
+    padding: 0
+    min-height: 190px
+
+  .quiz_done .quiz__inner
+    padding: 0 !important
+
+  .quiz__info
+    position: absolute
+    top: 50%
+    left: 0
+
+    height: 152px
+    margin-top: -71px
+    width: 50%
+
+  .quiz_done .quiz__info
+    width: 100%
+    margin-top: -41px
+
+  .quiz__comment
+    margin: 0 20px !important
+
+  .quiz__content
+    opacity: 1
+    overflow: hidden
+    visibility: visible
+
+    margin-left: 50%
+    width: 50%
+    padding: 38px 0 37px 0
+
+    background: #d9eef2
+
+  .quiz_done .quiz__content
+    visibility: hidden
+
+  .quiz_done .quiz__info,
+  .quiz_done .quiz__content
+    animation: blink ($animationStep * 4) ease
+
+
+  // open-search
+  .open-search
+    display: block
+
+  .page-view-tickets .open-search,
+  .page-view-chat .open-search,
+  .page-view-question .open-search
+    opacity: 0
+    visibility: hidden

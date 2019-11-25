@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Index</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-last-page="view-overview" data-current-page="view-overview">
 <div class="page">
     <header class="header">
+        <div class="open-search">
+            <i class="ico-search"></i>
+        </div>
         <div class="header__top">
             <div class="close"><i class="ico-close"></i></div>
             <div class="connect-container">
@@ -31,19 +34,19 @@
             </div>
             <div class="titles-container">
                 <ul class="titles">
-                    <li class="titles__item">
+                    <li class="titles__item titles__item_0">
                         <div class="titles__sub">F.A.Q</div>
                         <div class="titles__title">Помощь</div>
                     </li>
-                    <li class="titles__item">
+                    <li class="titles__item titles__item_1">
                         <div class="titles__sub">Категория</div>
                         <div class="titles__title">Турниры</div>
                     </li>
-                    <li class="titles__item">
+                    <li class="titles__item titles__item_2">
                         <div class="titles__sub">
                             Мои обращения<div class="counter">2</div>
                         </div>
-                        <div class="titles__title">Связаться</div>
+                        <div class="titles__title">Связаться<div class="counter">2</div></div>
                     </li>
                 </ul>
             </div>
@@ -54,16 +57,17 @@
             </div>
             <div class="context-box">
                 <div class="context-box__list">
-                    <div class="context-box__item">
+                    <div class="context-box__item context-box__item_0">
+                        <div class="search__link">Отмена</div>
                         <label class="search">
                             <i class="search__ico"></i>
                             <input type="text" name="q" id="q" class="search__area" placeholder="Поиск">
                         </label>
                     </div>
-                    <div class="context-box__item">
+                    <div class="context-box__item context-box__item_1">
                         <a href="#" class="button js-open-form"><i class="ico-plus"></i>Новое Обращение</a>
                     </div>
-                    <div class="context-box__item">
+                    <div class="context-box__item context-box__item_2">
                         <div class="titles__item">
                             <div class="titles__sub">
                                 Обращение #37
@@ -221,16 +225,16 @@
                         <div class="slider__view">
                             <ul class="slider__list">
                                 <li class="slider__item">
-                                    <img src="img/content/pic-00.jpg" alt="">
+                                    <img src="img/content/pic-00.jpg" alt="" draggable="false">
                                 </li>
                                 <li class="slider__item">
-                                    <img src="img/content/pic-01.jpg" alt="">
+                                    <img src="img/content/pic-01.jpg" alt="" draggable="false">
                                 </li>
                                 <li class="slider__item">
-                                    <img src="img/content/pic-00.jpg" alt="">
+                                    <img src="img/content/pic-00.jpg" alt="" draggable="false">
                                 </li>
                                 <li class="slider__item">
-                                    <img src="img/content/pic-01.jpg" alt="">
+                                    <img src="img/content/pic-01.jpg" alt="" draggable="false">
                                 </li>
                             </ul>
                         </div>
@@ -491,56 +495,60 @@
                 </div>
                 <div class="quiz">
                     <div class="quiz__inner">
-                        <i class="ico-check"></i>
-                        <div class="main-icon">
-                            <div class="main-icon__static"></div>
-                            <div class="main-icon__holder">
-                                <ul class="main-icon__set">
-                                    <li class="main-icon__item"><i class="ico-bubble-headphones"></i></li>
+                        <div class="quiz__info">
+                            <i class="ico-check"></i>
+                            <div class="main-icon">
+                                <div class="main-icon__static"></div>
+                                <div class="main-icon__holder">
+                                    <ul class="main-icon__set">
+                                        <li class="main-icon__item"><i class="ico-bubble-headphones"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="titles-container">
+                                <div class="titles">
+                                    <div class="titles__item">
+                                        <div class="titles__title">
+                                            Ваша проблема решена?
+                                        </div>
+                                        <div class="titles__sub">Оцените работу наших <br>специалистов.</div>
+                                    </div>
+                                    <div class="titles__item">
+                                        <div class="titles__title">
+                                            Спасибо за обращение!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quiz__content">
+                            <div class="rating-container">
+                                <ul class="rating">
+                                    <li class="rating__item">
+                                        <i class="ico-star"></i>
+                                    </li>
+                                    <li class="rating__item">
+                                        <i class="ico-star"></i>
+                                    </li>
+                                    <li class="rating__item">
+                                        <i class="ico-star"></i>
+                                    </li>
+                                    <li class="rating__item">
+                                        <i class="ico-star"></i>
+                                    </li>
+                                    <li class="rating__item">
+                                        <i class="ico-star"></i>
+                                    </li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="titles-container">
-                            <div class="titles">
-                                <div class="titles__item">
-                                    <div class="titles__title">
-                                        Ваша проблема решена?
-                                    </div>
-                                    <div class="titles__sub">Оцените работу наших <br>специалистов.</div>
-                                </div>
-                                <div class="titles__item">
-                                    <div class="titles__title">
-                                        Спасибо за обращение!
-                                    </div>
-                                </div>
+                            <a href="#" class="pseudo-link"><i class="ico-plus-color"></i>Добавить комментарий</a>
+                            <div class="quiz__comment">
+                                <label class="input">
+                                    <span class="input__mirror"></span>
+                                    <textarea name="comment" id="comment" class="input__area"></textarea>
+                                    <span class="input__label">Ваш комментарий</span>
+                                </label>
                             </div>
-                        </div>
-                        <div class="rating-container">
-                            <ul class="rating">
-                                <li class="rating__item">
-                                    <i class="ico-star"></i>
-                                </li>
-                                <li class="rating__item">
-                                    <i class="ico-star"></i>
-                                </li>
-                                <li class="rating__item">
-                                    <i class="ico-star"></i>
-                                </li>
-                                <li class="rating__item">
-                                    <i class="ico-star"></i>
-                                </li>
-                                <li class="rating__item">
-                                    <i class="ico-star"></i>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#" class="pseudo-link"><i class="ico-plus-color"></i>Добавить комментарий</a>
-                        <div class="quiz__comment">
-                            <label class="input">
-                                <span class="input__mirror"></span>
-                                <textarea name="comment" id="comment" class="input__area"></textarea>
-                                <span class="input__label">Ваш комментарий</span>
-                            </label>
                         </div>
                     </div>
                     <ul class="buttons">
@@ -574,27 +582,27 @@
     <div id="view-overlay" class="view view-overlay">
         <div class="overlay__head">
             <div class="overlay__counter">
-                2/4
+                1/4
             </div>
             <div class="back js-back">
                 <i class="ico-arrow-left-color"></i>
             </div>
         </div>
         <div class="overlay__body">
-            <div class="slider js-vertical-align">
+            <div class="slider">
                 <div class="slider__view">
                     <ul class="slider__list">
                         <li class="slider__item">
-                            <img src="img/content/pic-00.jpg" alt="">
+                            <img src="img/content/pic-00.jpg" alt="" draggable="false">
                         </li>
                         <li class="slider__item">
-                            <img src="img/content/pic-01.jpg" alt="">
+                            <img src="img/content/pic-01.jpg" alt="" draggable="false">
                         </li>
                         <li class="slider__item">
-                            <img src="img/content/pic-00.jpg" alt="">
+                            <img src="img/content/pic-00.jpg" alt="" draggable="false">
                         </li>
                         <li class="slider__item">
-                            <img src="img/content/pic-01.jpg" alt="">
+                            <img src="img/content/pic-01.jpg" alt="" draggable="false">
                         </li>
                     </ul>
                 </div>
@@ -650,7 +658,7 @@
                         </label>
                     </li>
                     <li class="form__item">
-                        <label class="input input_select">
+                        <label class="input input_select" tabindex="">
                             <select name="type" id="type" class="js-open-hidden-form">
                                 <option value="1">Проблемы с соединением</option>
                                 <option value="2">Ошибка</option>
